@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Learning To-Do · Blaise Izerimana</title>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="wrap">
+
+    <section class="sheet" id="learning">
+      <div class="sheet-header">
+        <p class="sheet-title">Learning Todo Page Design</p>
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle dark/light mode">Theme: ☀️ / 🌙</button>
+      </div>
+
+      <div class="menu">
+        <a href="index.html" class="logo">
+          <svg viewBox="0 0 40 40" aria-hidden="true">
+            <circle cx="20" cy="20" r="17" fill="none" stroke="currentColor" stroke-width="3" />
+            <text x="20" y="27" text-anchor="middle" font-size="20" fill="currentColor"
+             font-family="Patrick Hand, Comic Sans MS, cursive">B</text>
+          </svg>
+          <strong>My Site</strong>
+        </a>
+        <a href="index.html">Home</a>
+        <a href="cv.html">CV</a>
+        <a href="learning.html" class="active">Learning</a>
+        <a href="favorites.html">Favorites</a>
+      </div>
+
+      <div class="row" style="align-items: center;">
+        <!-- book / notebook icon from original wireframe -->
+        <svg viewBox="0 0 60 60" width="64" height="64" aria-label="book icon" role="img" style="flex: none;">
+          <rect x="8" y="8" width="44" height="44" fill="none" stroke="currentColor" stroke-width="3" />
+          <line x1="18" y1="8" x2="18" y2="52" stroke="currentColor" stroke-width="3" />
+          <line x1="26" y1="20" x2="44" y2="20" stroke="currentColor" stroke-width="3" />
+          <line x1="26" y1="30" x2="44" y2="30" stroke="currentColor" stroke-width="3" />
+        </svg>
+        <div class="grow">
+          <h2>What I want to learn</h2>
+          <p>My to-do list &amp; technical craft milestones</p>
+        </div>
+      </div>
+
+      <div class="box" style="margin-top: 16px;">
+        <div class="todo-stats">
+          <span id="statsLabel">Completed: 4 of 7 items</span>
+          <span style="font-size: 0.9rem; cursor: pointer; text-decoration: underline;" id="resetBtn">Reset default
+            items</span>
+        </div>
+
+        <ul class="todo" id="todoList">
+          <li class="done" data-id="1">
+            <span class="check" role="checkbox" aria-checked="true">&times;</span>
+            <span class="text">Learn HTML basics &amp; semantic markup structure</span>
+          </li>
+          <li class="done" data-id="2">
+            <span class="check" role="checkbox" aria-checked="true">&times;</span>
+            <span class="text">Learn CSS (Flexbox, Grid &amp; CSS Custom Properties)</span>
+          </li>
+          <li class="done" data-id="3">
+            <span class="check" role="checkbox" aria-checked="true">&times;</span>
+            <span class="text">Learn JavaScript (DOM APIs, async/await &amp; ES modules)</span>
+          </li>
+          <li class="done" data-id="4">
+            <span class="check" role="checkbox" aria-checked="true">&times;</span>
+            <span class="text">Build a small project with persistent state</span>
+          </li>
+          <li data-id="5">
+            <span class="check" role="checkbox" aria-checked="false"></span>
+            <span class="text">Deep dive into WebGL shader art &amp; creative mathematics</span>
+          </li>
+          <li data-id="6">
+            <span class="check" role="checkbox" aria-checked="false"></span>
+            <span class="text">Publish an open-source handwritten paper UI design kit</span>
+          </li>
+          <li data-id="7">
+            <span class="check" role="checkbox" aria-checked="false"></span>
+            <span class="text">Explore Web Audio API for simulated fountain pen soundscapes</span>
+          </li>
+        </ul>
+
+        <div class="todo-add-box">
+          <input type="text" id="newTodoInput" class="todo-input"
+           placeholder="Write a new topic or goal... (Press Enter or click Add)" aria-label="New learning item">
+          <button type="button" class="btn" id="addTodoBtn" style="margin-top: 0;">+ Add new item</button>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span>Continuous Learning &bull; Blaise Izerimana</span>
+        <span><a href="favorites.html">Next: Favorites &rarr;</a></span>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="./scripts.js"></script>
+
+</body>
+
+</html>

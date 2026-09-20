@@ -1,0 +1,496 @@
+:root {
+  --paper: #fffef8;
+  --bg: #eceae0;
+  --ink: #222222;
+  --soft: #777777;
+  --accent: #d9534f;
+  --highlight: #f8ecc2;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #2a2a27;
+    --bg: #161614;
+    --ink: #f0eee4;
+    --soft: #9a988e;
+    --accent: #e57373;
+    --highlight: #423e2a;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #2a2a27;
+  --bg: #161614;
+  --ink: #f0eee4;
+  --soft: #9a988e;
+  --accent: #e57373;
+  --highlight: #423e2a;
+}
+
+:root[data-theme="light"] {
+  --paper: #fffef8;
+  --bg: #eceae0;
+  --ink: #222222;
+  --soft: #777777;
+  --accent: #d9534f;
+  --highlight: #f8ecc2;
+}
+
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+  scroll-behavior: smooth;
+  background: var(--bg);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Patrick Hand", "Comic Sans MS", "Segoe Print", cursive,
+    sans-serif;
+  font-size: 1.15rem;
+  line-height: 1.4;
+  min-height: 100vh;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul {
+  margin: 0;
+}
+
+/* Sheet of Paper */
+.sheet {
+  background: var(--paper);
+  /* border: 3px solid var(--ink); */
+  /* border-radius: 6px; */
+  padding: 18px 20px;
+  /* margin: 0 0 32px; */
+  /* box-shadow: 4px 5px 0px var(--ink); */
+  position: relative;
+}
+
+.sheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.sheet-title {
+  font-size: 1.15rem;
+  color: var(--soft);
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-underline-offset: 4px;
+}
+
+.theme-toggle-btn {
+  background: var(--paper);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 16px;
+  padding: 2px 10px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+.theme-toggle-btn:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* =========================================================
+   Menu Bar (Same on every page)
+   ========================================================= */
+.menu {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  border: 2px solid var(--ink);
+  padding: 8px 10px;
+  margin-bottom: 18px;
+  background: var(--paper);
+}
+
+.menu a {
+  color: var(--ink);
+  text-decoration: none;
+  border: 2px solid var(--ink);
+  padding: 2px 12px;
+  border-radius: 4px;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.menu a:hover,
+.menu a:focus-visible,
+.menu a.active {
+  background: var(--ink);
+  color: var(--paper);
+  outline: none;
+}
+
+.menu .logo {
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.menu .logo svg {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   Picture Containers (Wide banner, round avatar, square grid)
+   ========================================================= */
+.pic-frame {
+  border: 2px solid var(--ink);
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.pic-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.pic-frame.wide {
+  height: 180px;
+  margin-bottom: 16px;
+}
+
+.pic-frame.wide .pic-caption {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  padding: 4px 10px;
+  font-size: 0.95rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pic-frame.round {
+  border-radius: 50%;
+  width: 115px;
+  height: 115px;
+  flex: none;
+}
+
+.pic-frame.square {
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+/* =========================================================
+   Typography & Sections
+   ========================================================= */
+h2 {
+  font-size: 1.7rem;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: 1.3rem;
+  margin-bottom: 6px;
+}
+
+.badge {
+  display: inline-block;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  padding: 1px 8px;
+  font-size: 0.95rem;
+  background: var(--highlight);
+  margin-left: 6px;
+}
+
+.box {
+  border: 2px solid var(--ink);
+  padding: 12px 14px;
+  background: var(--paper);
+}
+
+.bio-text {
+  margin: 10px 0;
+  line-height: 1.5;
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.grow {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 14px;
+}
+
+/* =========================================================
+   Buttons & Links
+   ========================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 2px solid var(--ink);
+  border-radius: 20px;
+  padding: 3px 18px;
+  margin-top: 8px;
+  color: var(--ink);
+  text-decoration: none;
+  background: var(--paper);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.1rem;
+  box-shadow: 2px 2px 0px var(--ink);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px var(--ink);
+}
+
+.btn.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* =========================================================
+   CV Elements
+   ========================================================= */
+.contact-line {
+  margin: 6px 0;
+  color: var(--soft);
+  font-size: 1.05rem;
+}
+
+.contact-line a {
+  color: inherit;
+  text-decoration: underline;
+}
+.contact-line a:hover {
+  color: var(--ink);
+}
+
+.cv-item {
+  padding: 8px 0;
+  border-bottom: 2px dashed var(--soft);
+}
+.cv-item:last-child {
+  border-bottom: none;
+}
+
+.cv-item-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.cv-item-title {
+  font-weight: bold;
+  font-size: 1.15rem;
+}
+
+.cv-item-period {
+  font-size: 0.95rem;
+  border: 1px solid var(--ink);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.cv-item-sub {
+  color: var(--soft);
+  font-size: 1rem;
+  margin-top: 2px;
+}
+
+.cv-item-desc {
+  margin-top: 4px;
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+/* =========================================================
+   Interactive To-Do List
+   ========================================================= */
+.todo-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  color: var(--soft);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.todo {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.todo li {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 4px;
+  border-bottom: 2px dashed var(--soft);
+  transition: background-color 0.15s ease;
+}
+
+.todo li:last-child {
+  border-bottom: none;
+}
+
+.todo .check {
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--ink);
+  flex: none;
+  background: var(--paper);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  user-select: none;
+  border-radius: 2px;
+}
+
+.todo .done .check {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.todo .done .text {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  color: var(--soft);
+}
+
+.todo .text {
+  flex: 1;
+  cursor: pointer;
+  line-height: 1.3;
+}
+
+.todo-add-box {
+  margin-top: 14px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.todo-input {
+  flex: 1 1 200px;
+  border: 2px solid var(--ink);
+  padding: 4px 10px;
+  font-family: inherit;
+  font-size: 1.05rem;
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: 4px;
+}
+.todo-input:focus {
+  outline: none;
+  background: var(--highlight);
+}
+
+/* =========================================================
+   Favorites Cards
+   ========================================================= */
+.fav-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.fav-card .fav-note {
+  font-size: 1rem;
+  color: var(--ink);
+  margin-top: 4px;
+  line-height: 1.35;
+}
+
+.fav-tag {
+  font-size: 0.85rem;
+  color: var(--soft);
+  margin-top: 8px;
+  border-top: 1px dashed var(--soft);
+  padding-top: 4px;
+}
+
+/* =========================================================
+   Footer (Consistent across pages)
+   ========================================================= */
+.footer {
+  border: 2px solid var(--ink);
+  text-align: center;
+  padding: 8px 12px;
+  margin-top: 20px;
+  color: var(--soft);
+  font-size: 0.95rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.footer a {
+  color: var(--ink);
+  text-decoration: underline;
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>My Favorites · Blaise Izerimana</title>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="wrap">
+
+    <section class="sheet" id="favorites">
+      <div class="sheet-header">
+        <p class="sheet-title">Favorites Page Design</p>
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle dark/light mode">Theme: ☀️ / 🌙</button>
+      </div>
+
+      <div class="menu">
+        <a href="index.html" class="logo">
+          <svg viewBox="0 0 40 40" aria-hidden="true">
+            <circle cx="20" cy="20" r="17" fill="none" stroke="currentColor" stroke-width="3" />
+            <text x="20" y="27" text-anchor="middle" font-size="20" fill="currentColor"
+             font-family="Patrick Hand, Comic Sans MS, cursive">B</text>
+          </svg>
+          <strong>My Site</strong>
+        </a>
+        <a href="index.html">Home</a>
+        <a href="cv.html">CV</a>
+        <a href="learning.html">Learning</a>
+        <a href="favorites.html" class="active">Favorites</a>
+      </div>
+
+      <div class="row" style="align-items: center;">
+        <!-- star icon from original wireframe -->
+        <svg viewBox="0 0 60 60" width="64" height="64" aria-label="star icon" role="img" style="flex: none;">
+          <polygon points="30,6 37,23 55,24 41,36 46,54 30,44 14,54 19,36 5,24 23,23" fill="none" stroke="currentColor"
+           stroke-width="3" stroke-linejoin="round" />
+        </svg>
+        <div class="grow">
+          <h2>My Favorites</h2>
+          <p>Things I love &bull; Everyday inspirations, rituals &amp; culinary comforts</p>
+        </div>
+      </div>
+
+      <div class="grid" style="margin-top: 16px;">
+        <!-- Card 1: Favorite Food -->
+        <div class="box fav-card">
+          <div>
+            <div class="pic-frame square">
+              <img src="./images/food.png" alt="Food">
+            </div>
+            <h3 style="margin-top: 10px;">Favorite food: Ramen</h3>
+            <p style="font-size: 0.95rem; color: var(--soft); font-weight: bold;">Hakata Tonkotsu &middot; Marufuku SF
+            </p>
+            <p class="fav-note">
+              Rich 20-hour simmered broth, springy katame noodles, seasoned soft egg, and black garlic oil. The best
+              comfort on foggy San Francisco evenings.
+            </p>
+          </div>
+          <div class="fav-tag">
+            <span>#CulinaryComfort &bull; Japantown</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Favorite Movie -->
+        <div class="box fav-card">
+          <div>
+            <div class="pic-frame square">
+              <img src="./images/movie.png" alt="movie">
+            </div>
+            <h3 style="margin-top: 10px;">Favorite movie: Spirited Away</h3>
+            <p style="font-size: 0.95rem; color: var(--soft); font-weight: bold;">Studio Ghibli &middot; Hayao Miyazaki
+            </p>
+            <p class="fav-note">
+              An enduring masterclass in worldbuilding and hand-drawn art. Joe Hisaishi's piano score still guides how I
+              think about creative atmosphere and pacing.
+            </p>
+          </div>
+          <div class="fav-tag">
+            <span>#AnimationMasterpiece &bull; 2001</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Favorite Place -->
+        <div class="box fav-card">
+          <div>
+            <div class="pic-frame square">
+              <img src="./images/place.png" alt="place">
+            </div>
+            <h3 style="margin-top: 10px;">Favorite place: Point Reyes</h3>
+            <p style="font-size: 0.95rem; color: var(--soft); font-weight: bold;">Marin County Coastal Bluffs</p>
+            <p class="fav-note">
+              Crashing Pacific waves, wild tule elk wandering the ridges, and the cypress tree tunnel. My favorite
+              sanctuary for sketching with physical pens.
+            </p>
+          </div>
+          <div class="fav-tag">
+            <span>#CaliforniaCoast &bull; Wilderness</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Favorite Stationery -->
+        <div class="box fav-card">
+          <div>
+            <div class="pic-frame square">
+              <img src="./images/pen.png" alt="pen">
+            </div>
+            <h3 style="margin-top: 10px;">Favorite tool: MD Notebook</h3>
+            <p style="font-size: 0.95rem; color: var(--soft); font-weight: bold;">Midori MD Grid &amp; Fountain Pen</p>
+            <p class="fav-note">
+              Cream bleed-resistant Japanese cotton paper. Every digital product I build starts as loose scratches and
+              handwritten wireframes here first.
+            </p>
+          </div>
+          <div class="fav-tag">
+            <span>#AnalogTools &bull; Drafting</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span>Collected with gratitude &bull; Blaise Izerimana</span>
+        <span><a href="index.html">&uarr; Back to Home</a></span>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="./scripts.js"></script>
+
+</body>
+
+</html>
