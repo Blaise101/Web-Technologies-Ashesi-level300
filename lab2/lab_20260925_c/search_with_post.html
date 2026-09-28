@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search with POST</title>
+</head>
+
+<body>
+
+  <h1>Search with POST</h1>
+
+  <h2>Google</h2>
+
+  <form action="https://www.google.com/search" method="post">
+    <label for="google-search">Search Google:</label>
+    <input type="text" id="google-search" name="q">
+    <button type="submit">Search</button>
+  </form>
+
+  <h2>Wikipedia</h2>
+
+  <form action="https://en.wikipedia.org/wiki/Special:Search" method="post">
+    <label for="wiki-search">Search Wikipedia:</label>
+    <input type="text" id="wiki-search" name="search">
+    <button type="submit">Search</button>
+  </form>
+
+  <h2>YouTube</h2>
+
+  <form action="https://www.youtube.com/results" method="post">
+    <label for="youtube-search">Search YouTube:</label>
+    <input type="text" id="youtube-search" name="search_query">
+    <button type="submit">Search</button>
+  </form>
+
+</body>
+
+</html>

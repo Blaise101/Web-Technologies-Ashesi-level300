@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Blaise Izerimana · Personal Site</title>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="wrap">
+
+    <section class="sheet" id="main">
+      <div class="sheet-header">
+        <p class="sheet-title">Main Page Design</p>
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle dark/light mode">Theme: ☀️ / 🌙</button>
+      </div>
+
+      <div class="menu">
+        <a href="index.html" class="logo">
+          <svg viewBox="0 0 40 40" aria-hidden="true">
+            <circle cx="20" cy="20" r="17" fill="none" stroke="currentColor" stroke-width="3" />
+            <text x="20" y="27" text-anchor="middle" font-size="20" fill="currentColor"
+             font-family="Patrick Hand, Comic Sans MS, cursive">B</text>
+          </svg>
+          <strong>My Site</strong>
+        </a>
+        <a href="index.html" class="active">Home</a>
+        <a href="cv.html">CV</a>
+        <a href="learning.html">Learning</a>
+        <a href="favorites.html">Favorites</a>
+      </div>
+
+      <div class="pic-frame wide">
+        <img src="./images/banner.avif" alt="Banner">
+        <div class="pic-caption">
+          <span>Desk in Mission Ghana, Berekuso</span>
+          <span>Drafts &amp; Prototypes</span>
+        </div>
+      </div>
+
+      <h2>Hello, I'm Blaise Izerimana <span class="badge">Junior Developer</span></h2>
+
+      <div class="bio-text">
+        <p>I'm a frontend engineer and interaction designer based in Berekuso, Ghana.</p>
+        <p style="margin-top: 8px;">
+          I craft human-scale web interfaces, interactive creative coding projects, and thoughtful software with tactile
+          typography and organic animations.
+        </p>
+        <p style="margin-top: 8px; color: var(--soft);">
+          Currently exploring the intersection of analog sketchbooks, generative visuals, and modern web architecture.
+        </p>
+      </div>
+
+      <div style="margin-top: 14px; display: flex; gap: 8px; flex-wrap: wrap;">
+        <a href="cv.html" class="btn">See my CV &rarr;</a>
+        <a href="learning.html" class="btn" style="box-shadow: none;">What I'm Learning</a>
+        <a href="favorites.html" class="btn" style="box-shadow: none;">My Favorites</a>
+      </div>
+
+      <div class="footer">
+        <span>&copy; 2026 Blaise Izerimana</span>
+        <span>Contact: <a href="mailto:izerimanab74@gmail.com">izerimanab74@gmail.com</a></span>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="./scripts.js"></script>
+
+</body>
+
+</html>

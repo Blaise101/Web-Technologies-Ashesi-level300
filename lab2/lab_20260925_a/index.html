@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <title>Blaise Izerimana · Personal Site</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --paper: #fffef8;
+      --bg: #eceae0;
+      --ink: #222222;
+      --soft: #777777;
+      --accent: #d9534f;
+      --highlight: #f8ecc2;
+
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --paper: #2a2a27;
+        --bg: #161614;
+        --ink: #f0eee4;
+        --soft: #9a988e;
+        --accent: #e57373;
+        --highlight: #423e2a;
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --paper: #2a2a27;
+      --bg: #161614;
+      --ink: #f0eee4;
+      --soft: #9a988e;
+      --accent: #e57373;
+      --highlight: #423e2a;
+    }
+
+    :root[data-theme="light"] {
+      --paper: #fffef8;
+      --bg: #eceae0;
+      --ink: #222222;
+      --soft: #777777;
+      --accent: #d9534f;
+      --highlight: #f8ecc2;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-padding-top: env(safe-area-inset-top, 0px);
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Patrick Hand", "Comic Sans MS", "Segoe Print", cursive, sans-serif;
+      font-size: 1.15rem;
+      line-height: 1.4;
+      min-height: 100vh;
+    }
+
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    #main {
+      position: relative;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    ul {
+      margin: 0;
+    }
+
+    .sheet {
+      background: var(--paper);
+      padding: 18px 20px;
+      position: relative;
+    }
+
+    .sheet-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .sheet-title {
+      font-size: 1.15rem;
+      color: var(--soft);
+      text-decoration: underline;
+      text-decoration-style: wavy;
+      text-underline-offset: 4px;
+    }
+
+    .theme-toggle-btn {
+      background: var(--paper);
+      color: var(--ink);
+      border: 2px solid var(--ink);
+      border-radius: 16px;
+      padding: 2px 10px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      border: 2px solid var(--ink);
+      padding: 8px 10px;
+      margin-bottom: 18px;
+      background: var(--paper);
+    }
+
+    .menu a {
+      color: var(--ink);
+      text-decoration: none;
+      border: 2px solid var(--ink);
+      padding: 2px 12px;
+      border-radius: 4px;
+      transition: background 0.12s ease, color 0.12s ease;
+    }
+
+    .menu a:hover,
+    .menu a:focus-visible,
+    .menu a.active {
+      background: var(--ink);
+      color: var(--paper);
+      outline: none;
+    }
+
+    .menu .logo {
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .menu .logo svg {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+    }
+
+    /* Banner */
+    .pic-frame {
+      border: 2px solid var(--ink);
+      position: relative;
+      display: block;
+      overflow: hidden;
+      background: var(--paper);
+    }
+
+    .pic-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pic-frame.wide {
+      height: 180px;
+      margin-bottom: 16px;
+    }
+
+    .pic-frame.wide .pic-caption {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      right: 8px;
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      padding: 4px 10px;
+      font-size: 0.95rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Typography */
+    h2 {
+      font-size: 1.7rem;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .badge {
+      display: inline-block;
+      border: 2px solid var(--ink);
+      border-radius: 12px;
+      padding: 1px 8px;
+      font-size: 0.95rem;
+      background: var(--highlight);
+      margin-left: 6px;
+    }
+
+    .bio-text {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 2px solid var(--ink);
+      border-radius: 20px;
+      padding: 3px 18px;
+      margin-top: 8px;
+      color: var(--ink);
+      text-decoration: none;
+      background: var(--paper);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 1.1rem;
+      box-shadow: 2px 2px 0px var(--ink);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px var(--ink);
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .btn:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0px var(--ink);
+    }
+
+    /* Footer */
+    .footer {
+      border: 2px solid var(--ink);
+      text-align: center;
+      padding: 8px 12px;
+      margin-top: 20px;
+      color: var(--soft);
+      font-size: 0.95rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .footer a {
+      color: var(--ink);
+      text-decoration: underline;
+    }
+
+    /* Extra internal CSS for the lab */
+    nav a {
+      margin: 2px;
+    }
+
+    #main {
+      padding: 18px 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrap">
+
+    <main class="sheet" id="main">
+
+      <header class="sheet-header">
+        <p class="sheet-title">Main Page Design</p>
+
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle dark/light mode">
+          Theme: ☀️ / 🌙
+        </button>
+      </header>
+
+      <nav class="menu">
+
+        <a href="index.html" class="logo">
+          <svg viewBox="0 0 40 40" aria-hidden="true">
+            <circle cx="20" cy="20" r="17" fill="none" stroke="currentColor" stroke-width="3" />
+
+            <text x="20" y="27" text-anchor="middle" font-size="20" fill="currentColor"
+             font-family="Patrick Hand, Comic Sans MS, cursive">
+              B
+            </text>
+          </svg>
+
+          <strong>My Site</strong>
+        </a>
+
+        <a href="index.html" class="active">Home</a>
+        <a href="cv.html">CV</a>
+        <a href="learning.html">Learning</a>
+        <a href="favorites.html">Favorites</a>
+
+      </nav>
+
+      <section>
+
+        <figure class="pic-frame wide">
+
+          <img src="./images/banner.avif" alt="Banner">
+
+          <figcaption class="pic-caption">
+            <span>Desk in Mission Ghana, Berekuso</span>
+            <span>Drafts &amp; Prototypes</span>
+          </figcaption>
+
+        </figure>
+
+      </section>
+
+      <section>
+
+        <h2>
+          Hello, I'm Blaise Izerimana
+          <span class="badge">Junior Developer</span>
+        </h2>
+
+        <article class="bio-text">
+
+          <p>
+            I'm a frontend engineer and interaction designer
+            based in Berekuso, Ghana.
+          </p>
+
+          <p style="margin-top: 8px;">
+            I craft human-scale web interfaces, interactive
+            creative coding projects, and thoughtful software
+            with tactile typography and organic animations.
+          </p>
+
+          <p style="margin-top: 8px; color: var(--soft);">
+            Currently exploring the intersection of analog
+            sketchbooks, generative visuals, and modern web
+            architecture.
+          </p>
+
+        </article>
+
+      </section>
+
+      <aside class="semantic-note">
+
+        <p>
+          Explore my CV, learning goals, and favorite resources.
+        </p>
+
+      </aside>
+
+      <section>
+
+        <div style="margin-top: 14px; display: flex; gap: 8px; flex-wrap: wrap;">
+
+          <a href="cv.html" class="btn">
+            See my CV &rarr;
+          </a>
+
+          <a href="learning.html" class="btn" style="box-shadow: none;">
+            What I'm Learning
+          </a>
+
+          <a href="favorites.html" class="btn" style="box-shadow: none;">
+            My Favorites
+          </a>
+
+        </div>
+
+      </section>
+
+      <footer class="footer">
+
+        <span>&copy; 2026 Blaise Izerimana</span>
+
+        <span>
+          Contact:
+          <a href="mailto:izerimanab74@gmail.com">
+            izerimanab74@gmail.com
+          </a>
+        </span>
+
+      </footer>
+
+    </main>
+
+  </div>
+
+
+  <script src="./scripts.js"></script>
+
+</body>
+
+</html>
