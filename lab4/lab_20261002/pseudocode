@@ -1,0 +1,37 @@
+START
+
+Set the secret word
+Set guessed letters to empty
+Set wrong guesses to 0
+
+Display the first Hangman image
+Display the hidden word
+Create buttons for A–Z
+
+WHEN the player selects a letter:
+
+    IF the letter was already guessed:
+        do nothing
+
+    ELSE:
+        add the letter to guessed letters
+        disable the letter button
+
+        IF the letter is in the secret word:
+            reveal the matching letters
+
+        ELSE:
+            increase wrong guesses
+            display the next Hangman stage
+
+        Check if all letters have been revealed
+
+        IF the word is complete:
+            display a win message
+            end the game
+
+        ELSE IF maximum wrong guesses is reached:
+            display a loss message
+            end the game
+
+END

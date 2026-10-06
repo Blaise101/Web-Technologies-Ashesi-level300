@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hangman</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game">
+    <h1>Hangman</h1>
+
+    <div class="drawing-area">
+      <img id="hangmanImage" src="images/hangman_stage_1.png" alt="Hangman stage 1">
+    </div>
+
+    <div id="word" class="word" aria-label="Hidden word"></div>
+
+    <div id="keyboard" class="keyboard" aria-label="Letter keyboard"></div>
+
+    <p id="message" class="message">Choose a letter.</p>
+  </main>
+
+  <script src="hangman.js"></script>
+</body>
+</html>

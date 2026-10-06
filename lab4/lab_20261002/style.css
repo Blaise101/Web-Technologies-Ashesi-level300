@@ -1,0 +1,81 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: #111111;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.game {
+  width: min(560px, 100%);
+  min-height: 680px;
+  border: 2px solid #888;
+  border-radius: 4px;
+  padding: 20px 24px 28px;
+  text-align: center;
+}
+
+h1 {
+  margin: 0 0 18px;
+  font-size: 32px;
+}
+
+.drawing-area {
+  width: 270px;
+  height: 270px;
+  margin: 0 auto 12px;
+}
+
+.drawing-area img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.word {
+  min-height: 48px;
+  margin: 12px 0 32px;
+  font-size: 28px;
+  letter-spacing: 8px;
+  font-weight: 600;
+}
+
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 10px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.keyboard button {
+  border: 0;
+  border-radius: 5px;
+  padding: 9px 4px;
+  background: #eeeeee;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.keyboard button:hover:not(:disabled) { background: #dddddd; }
+.keyboard button:disabled { cursor: default; opacity: 0.55; }
+
+.message {
+  min-height: 24px;
+  margin: 22px 0 0;
+  font-size: 15px;
+}
+
+@media (max-width: 500px) {
+  .game { padding: 16px; min-height: 620px; }
+  .drawing-area { width: 220px; height: 220px; }
+  .keyboard { gap: 6px; }
+  .keyboard button { padding: 8px 2px; }
+}
