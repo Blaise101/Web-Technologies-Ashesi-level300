@@ -1,4 +1,37 @@
-const word = "JAVASCRIPT";
+const words = [
+  "JAVASCRIPT",
+  "BROWSER",
+  "COMPUTER",
+  "KEYBOARD",
+  "WEBSITE",
+  "PROGRAMMING",
+  "FUNCTION",
+  "VARIABLE",
+  "DATABASE",
+  "INTERNET",
+  "ALGORITHM",
+  "SOFTWARE",
+  "HARDWARE",
+  "DEVELOPER",
+  "NETWORK",
+  "APPLICATION",
+  "FRAMEWORK",
+  "CODING",
+  "PYTHON",
+  "LAPTOP",
+  "MOBILE",
+  "SERVER",
+  "DIGITAL",
+  "TECHNOLOGY",
+  "PROGRAM",
+  "HTML",
+  "STUDENT",
+  "SCHOOL",
+  "UNIVERSITY",
+  "INFORMATION"
+];
+
+const word = words[Math.floor(Math.random() * words.length)];
 let guessedLetters = [];
 let wrongGuesses = 0;
 const maxWrongGuesses = 6;
@@ -7,6 +40,7 @@ const wordElement = document.getElementById("word");
 const keyboardElement = document.getElementById("keyboard");
 const messageElement = document.getElementById("message");
 const hangmanImage = document.getElementById("hangmanImage");
+const resetButton = document.getElementById("resetButton");
 
 function displayWord() {
   wordElement.textContent = word
@@ -59,6 +93,10 @@ function disableKeyboard() {
   const buttons = keyboardElement.querySelectorAll("button");
   buttons.forEach(button => button.disabled = true);
 }
+
+resetButton.addEventListener("click", () => {
+  location.reload();
+});
 
 displayWord();
 createKeyboard();
