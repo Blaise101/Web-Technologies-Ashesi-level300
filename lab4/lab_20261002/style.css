@@ -15,30 +15,30 @@ body {
 }
 
 .game {
-  width: min(560px, 100%);
-  min-height: 680px;
-  border: 2px solid #888;
-  border-radius: 4px;
-  padding: 20px 24px 28px;
+  width: min(600px, 100%);
+  min-height: 700px;
+  border: 2px solid #777;
+  border-radius: 5px;
+  padding: 22px 26px 28px;
   text-align: center;
 }
 
 h1 {
-  margin: 0 0 8px;
-  font-size: 32px;
+  margin: 0 0 6px;
+  font-size: 34px;
 }
 
 .description {
-  max-width: 430px;
-  margin: 0 auto 18px;
+  max-width: 470px;
+  margin: 0 auto 16px;
   font-size: 14px;
   line-height: 1.5;
 }
 
 .drawing-area {
   width: 270px;
-  height: 270px;
-  margin: 0 auto 12px;
+  height: 250px;
+  margin: 0 auto 8px;
 }
 
 .drawing-area img {
@@ -47,9 +47,18 @@ h1 {
   object-fit: contain;
 }
 
+.info {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin: 4px auto 14px;
+  font-size: 14px;
+}
+
 .word {
   min-height: 48px;
-  margin: 12px 0 32px;
+  margin: 10px 0 26px;
   font-size: 28px;
   letter-spacing: 8px;
   font-weight: 600;
@@ -58,8 +67,8 @@ h1 {
 .keyboard {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  gap: 10px;
-  max-width: 500px;
+  gap: 9px;
+  max-width: 510px;
   margin: 0 auto;
 }
 
@@ -78,19 +87,26 @@ h1 {
 }
 .keyboard button:disabled {
   cursor: default;
-  opacity: 0.55;
+  opacity: 0.5;
 }
 
 .message {
   min-height: 24px;
-  margin: 22px 0 12px;
+  margin: 20px 0 5px;
   font-size: 15px;
+  font-weight: 600;
+}
+
+.guessed {
+  min-height: 20px;
+  margin: 0 0 14px;
+  font-size: 13px;
 }
 
 .reset-button {
   border: 0;
   border-radius: 5px;
-  padding: 10px 18px;
+  padding: 10px 20px;
   background: #eeeeee;
   font-size: 14px;
   font-weight: 700;
@@ -108,12 +124,16 @@ h1 {
   }
   .drawing-area {
     width: 220px;
-    height: 220px;
+    height: 210px;
   }
   .keyboard {
     gap: 6px;
   }
   .keyboard button {
     padding: 8px 2px;
+  }
+  .word {
+    font-size: 23px;
+    letter-spacing: 5px;
   }
 }
