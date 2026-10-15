@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hangman | Word Challenge</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <main class="container">
+    <header class="site-header">
+      <div>
+        <h1>Hangman <span class="title-dot">.</span></h1>
+        <p class="muted">A little word challenge. A lot of thinking.</p>
+      </div>
+      <div id="sessionArea" class="session hidden">
+        <div class="avatar small-avatar" id="headerAvatar">?</div>
+        <div><strong id="welcomeText">Player</strong>
+          <div class="muted small">Player account</div>
+        </div>
+        <button id="logoutBtn" class="button button-quiet" type="button">Log out</button>
+      </div>
+    </header>
+
+    <section id="authPanel" class="panel auth-panel">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">YOUR GAME PROFILE</p>
+          <h2 id="authTitle">Welcome back</h2>
+          <p class="muted">Sign in or create a player profile to save your points.</p>
+        </div>
+      </div>
+      <form id="authForm">
+        <label for="username">Username</label>
+        <input id="username" name="username" autocomplete="username" maxlength="20" required
+         placeholder="Choose a username">
+        <label for="passcode">Passcode</label>
+        <input id="passcode" name="passcode" type="password" autocomplete="current-password" required
+         placeholder="Enter your passcode">
+        <div id="confirmWrap">
+          <label for="confirmPasscode">Confirm passcode</label>
+          <input id="confirmPasscode" name="confirmPasscode" type="password" autocomplete="new-password"
+           placeholder="Enter it again">
+        </div>
+        <div class="actions">
+          <button type="submit" id="createBtn" class="button">Create player</button>
+          <button type="button" id="signinBtn" class="button button-quiet">Sign in instead</button>
+        </div>
+      </form>
+      <p id="authMessage" class="message" role="status"></p>
+
+    </section>
+
+    <section id="gamePanel" class="hidden">
+      <section class="panel profile-panel">
+        <div class="profile-summary">
+          <div class="avatar" id="profileAvatar">?</div>
+          <div class="profile-text">
+            <p class="eyebrow">PLAYER PROFILE</p>
+            <h2 id="profileName">Player</h2>
+            <p class="muted small">Your theme and profile picture are saved for this browser.</p>
+          </div>
+        </div>
+        <div class="profile-settings">
+          <div>
+            <label for="themeSelect">Theme</label>
+            <select id="themeSelect">
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+            </select>
+          </div>
+          <div>
+            <label for="photoInput">Profile picture (max 500 KB)</label>
+            <input id="photoInput" type="file" accept="image/*">
+            <p id="photoMessage" class="small muted">Choose an image to upload.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel start-panel">
+        <div>
+          <p class="eyebrow">READY WHEN YOU ARE</p>
+          <h2>Start a round</h2>
+          <p class="muted">Choose a difficulty. The words and hints load from a JSON file.</p>
+        </div>
+        <div class="start-controls">
+          <div>
+            <label for="difficulty">Difficulty</label>
+            <select id="difficulty">
+              <option value="easy">Easy</option>
+              <option value="normal">Normal</option>
+            </select>
+          </div>
+          <button id="startBtn" class="button" type="button">Start game <span aria-hidden="true">→</span></button>
+        </div>
+      </section>
+      <p id="gameMessage" class="message" role="status"></p>
+
+      <div class="game-grid">
+        <section class="panel game-card">
+          <div class="game-topline">
+            <div>
+              <p class="eyebrow">YOUR ROUND</p>
+              <h2>Find the word</h2>
+            </div>
+            <span class="pill" id="difficultyBadge">No round</span>
+          </div>
+          <div class="hangman-frame">
+            <img id="hangmanDrawing" src="hangman/stage1.png" alt="Hangman stage 1">
+          </div>
+          <div class="round-stats">
+            <span>Mistakes <strong id="mistakes">0</strong><span class="muted"> / 6</span></span>
+            <span>Round points <strong id="roundScore">0</strong></span>
+          </div>
+          <div id="wordDisplay" class="word-display" aria-live="polite">_ _ _ _ _</div>
+          <div class="hint-box"><strong>Hint</strong>
+            <p id="hintText">Start a game to reveal a hint.</p>
+          </div>
+          <div class="actions">
+            <button id="hintBtn" class="button button-quiet" type="button" disabled>Use hint · −1 point</button>
+            <button id="endBtn" class="button button-danger" type="button" disabled>End round</button>
+          </div>
+        </section>
+
+        <section class="panel game-card">
+          <div class="game-topline">
+            <div>
+              <p class="eyebrow">MAKE YOUR MOVE</p>
+              <h2>Choose a letter</h2>
+            </div>
+          </div>
+          <p class="muted small">Correct guesses earn one point for every occurrence of that letter. Six incorrect
+            guesses end the round.</p>
+          <div id="keyboard" class="keyboard" aria-label="Letter keyboard"></div>
+          <div class="guessed-area"><strong>Guessed letters</strong>
+            <p id="guessedLetters" class="muted">None yet</p>
+          </div>
+        </section>
+      </div>
+
+      <section class="panel scoreboard-panel">
+        <div class="score-summary">
+          <div>
+            <p class="eyebrow">YOUR PROGRESS</p>
+            <h2>Scoreboard</h2>
+          </div>
+          <div class="total-score"><span class="muted small">All rounds</span><strong id="totalPoints">0</strong><span
+             class="muted small">total points</span></div>
+        </div>
+        <div class="leaderboard-grid">
+          <div class="leaderboard-card">
+            <h3>Easy leaderboard</h3>
+            <p class="muted small">Top 3 by Easy points</p>
+            <ol id="easyBoard"></ol>
+          </div>
+          <div class="leaderboard-card">
+            <h3>Normal leaderboard</h3>
+            <p class="muted small">Top 3 by Normal points</p>
+            <ol id="normalBoard"></ol>
+          </div>
+        </div>
+      </section>
+    </section>
+    <footer>Hangman</footer>
+  </main>
+</body>
+
+</html>

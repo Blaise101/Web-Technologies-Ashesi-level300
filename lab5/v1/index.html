@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hangman - Initial Implementation</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <main class="container">
+    <header>
+      <div>
+        <h1>Hangman</h1>
+        <p class="muted">Guess the hidden word, one letter at a time.</p>
+      </div>
+      <div id="sessionArea" class="session hidden">
+        <span id="welcomeText"></span>
+        <button id="logoutBtn" class="secondary">Log out</button>
+      </div>
+    </header>
+
+    <section id="authPanel" class="panel">
+      <h2>Player account</h2>
+      <p class="muted">Create a player or sign in to continue.</p>
+      <form id="authForm">
+        <label for="username">Username</label>
+        <input id="username" autocomplete="username" required maxlength="20">
+        <label for="passcode">Passcode</label>
+        <input id="passcode" type="password" autocomplete="current-password" required>
+        <div id="confirmWrap">
+          <label for="confirmPasscode">Confirm passcode (new players)</label>
+          <input id="confirmPasscode" type="password" autocomplete="new-password">
+        </div>
+        <div class="actions">
+          <button type="submit" id="createBtn">Create player</button>
+          <button type="button" id="signinBtn" class="secondary">Sign in</button>
+        </div>
+      </form>
+      <p id="authMessage" class="message" role="status"></p>
+    </section>
+
+    <section id="gamePanel" class="hidden">
+      <div class="panel setup">
+        <div>
+          <h2>Start a round</h2>
+          <p class="muted">Choose a difficulty, then load a word from its JSON file.</p>
+        </div>
+        <div class="difficulty">
+          <label for="difficulty">Difficulty</label>
+          <select id="difficulty">
+            <option value="easy">Easy</option>
+            <option value="normal">Normal</option>
+          </select>
+          <button id="startBtn">Start game</button>
+        </div>
+      </div>
+
+      <p id="gameMessage" class="message" role="status"></p>
+
+      <div class="game-grid">
+        <section class="panel game-card">
+          <div class="game-topline">
+            <h2>Find the word</h2>
+            <span class="pill" id="difficultyBadge">No round</span>
+          </div>
+          <img id="hangmanDrawing" src="data/images/stage0.png" alt="Hangman drawing">
+          <p class="muted">Wrong guesses: <strong id="mistakes">0</strong> / 6</p>
+          <div id="wordDisplay" class="word-display">_ _ _ _ _</div>
+          <p class="muted">Hint: <span id="hintText">Start a game to reveal a hint.</span></p>
+          <div class="actions">
+            <button id="hintBtn" class="secondary" disabled>Use hint (-1 point)</button>
+            <button id="endBtn" class="danger" disabled>End round</button>
+          </div>
+          <p class="score-line">Round points: <strong id="roundScore">0</strong></p>
+        </section>
+
+        <section class="panel game-card">
+          <h2>Choose a letter</h2>
+          <div id="keyboard" class="keyboard"></div>
+          <p class="muted small">Each revealed letter occurrence earns 1 point. A hint costs 1 point, but points canno
+            go below zero.</p>
+        </section>
+      </div>
+
+      <section class="panel">
+        <h2>My progress</h2>
+        <p>Total points: <strong id="totalPoints">0</strong></p>
+        <h3>Easy leaderboard · Top 3</h3>
+        <ol id="easyBoard" class="leaderboard"></ol>
+        <h3>Normal leaderboard · Top 3</h3>
+        <ol id="normalBoard" class="leaderboard"></ol>
+      </section>
+    </section>
+  </main>
+</body>
+
+</html>

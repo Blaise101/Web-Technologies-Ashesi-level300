@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week 5 Hangman - Design Sketch</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f5f8;
+      color: #202633;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 28px auto;
+      padding: 0 18px 28px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .sub {
+      margin: 5px 0 0;
+      color: #5e6878;
+      font-size: 14px;
+    }
+
+    .tag {
+      background: #e5ebf5;
+      border: 1px solid #cbd6e8;
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 270px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #d8dee8;
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 3px 12px #1d2b3a0b;
+    }
+
+    h2 {
+      font-size: 17px;
+      margin: 0 0 14px;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      color: #5e6878;
+      margin: 12px 0 5px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #cfd6e1;
+      border-radius: 7px;
+      background: white;
+      font-size: 14px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 7px;
+      padding: 10px 13px;
+      font-weight: bold;
+      background: #263b59;
+      color: white;
+      cursor: default;
+    }
+
+    button.secondary {
+      background: #edf1f6;
+      color: #283548;
+      border: 1px solid #d6dde7;
+    }
+
+    .full {
+      width: 100%;
+      margin-top: 14px;
+    }
+
+    .note {
+      color: #667184;
+      font-size: 12px;
+      line-height: 1.45;
+      margin: 12px 0 0;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #e5e9ef;
+      margin-bottom: 15px;
+    }
+
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #e7edf7;
+      color: #30496d;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .profile small {
+      display: block;
+      color: #697487;
+      margin-top: 3px;
+    }
+
+    .profile .logout {
+      margin-left: auto;
+      font-size: 12px;
+      padding: 8px 10px;
+    }
+
+    .game-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .levels {
+      display: flex;
+      gap: 8px;
+    }
+
+    .levels button {
+      min-width: 84px;
+    }
+
+    .levels .selected {
+      background: #dce8fa;
+      color: #1d416f;
+      border: 1px solid #9eb9e4;
+    }
+
+    .game-board {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 22px;
+      margin-top: 18px;
+      align-items: center;
+    }
+
+    .hangman {
+      min-height: 190px;
+      display: grid;
+      place-items: center;
+      background: #fafbfd;
+      border: 1px dashed #cbd4e0;
+      border-radius: 10px;
+    }
+
+    .word {
+      font-size: 29px;
+      letter-spacing: 8px;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .stat {
+      background: #f0f3f7;
+      border-radius: 7px;
+      padding: 8px 10px;
+      font-size: 12px;
+    }
+
+    .keyboard {
+      display: grid;
+      grid-template-columns: repeat(9, minmax(25px, 1fr));
+      gap: 6px;
+      margin-top: 18px;
+    }
+
+    .keyboard button {
+      padding: 9px 0;
+      background: #edf0f4;
+      color: #263448;
+      border: 1px solid #dfe4eb;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .leaderboard {
+      margin-top: 18px;
+    }
+
+    .boards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 8px 5px;
+      border-bottom: 1px solid #e8ecf1;
+    }
+
+    th {
+      color: #657185;
+      font-weight: 600;
+    }
+
+    .caption {
+      color: #687386;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+
+    @media(max-width:760px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .game-board {
+        grid-template-columns: 1fr;
+      }
+
+      .hangman {
+        min-height: 145px;
+      }
+
+      .keyboard {
+        grid-template-columns: repeat(7, minmax(25px, 1fr));
+      }
+
+      header {
+        align-items: flex-start;
+      }
+
+      .boards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <h1>Hangman</h1>
+        <p class="sub">Week 5 design sketch · account, game, and leaderboard</p>
+      </div>
+      <span class="tag">Initial design - mock-up</span>
+    </header>
+
+    <div class="layout">
+      <aside class="card">
+        <h2>Player account</h2>
+        <p class="sub">New players create an account; returning players sign in.</p>
+        <label for="username">Username</label>
+        <input id="username" placeholder="Enter username">
+        <label for="passcode">Passcode</label>
+        <input id="passcode" type="password" placeholder="Enter passcode">
+        <label for="confirm">Confirm passcode (new player)</label>
+        <input id="confirm" type="password" placeholder="Re-enter passcode">
+        <button class="full">Create account / Sign in</button>
+        <p class="note">Account status and errors will appear here. This is a visual sketch, not a working login form.
+        </p>
+        <hr style="border:0;border-top:1px solid #e5e9ef;margin:18px 0">
+        <h2>Personalize</h2>
+        <label for="theme">Theme</label>
+        <select id="theme">
+          <option>Light</option>
+          <option>Dark</option>
+          <option>Blue</option>
+        </select>
+        <label for="photo">Profile picture</label>
+        <input id="photo" type="file" accept="image/*">
+        <p class="note">A selected picture appears beside the player name. Oversized pictures will be rejected.</p>
+      </aside>
+
+      <main>
+        <section class="card">
+          <div class="profile">
+            <div class="avatar">P</div>
+            <div><strong>Player username</strong><small>Profile · saved theme</small></div>
+            <button class="secondary logout">Log out</button>
+          </div>
+          <div class="game-top">
+            <div>
+              <h2 style="margin-bottom:5px">Choose difficulty</h2>
+              <p class="sub">Words load from a JSON file when you start.</p>
+            </div>
+            <div class="levels">
+              <button class="selected">Easy</button>
+              <button class="secondary">Normal</button>
+            </div>
+          </div>
+          <button style="margin-top:14px">Start game</button>
+
+          <div class="game-board">
+            <div class="hangman" aria-label="Hangman drawing placeholder">
+              <svg viewBox="0 0 180 165" width="170" height="160" role="img" aria-label="Empty gallows drawing">
+                <g stroke="#202633" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 145 H150 M45 145 V20 H120 M45 20 H120 V40 M45 145 L25 160 M45 145 L65 160" />
+                </g>
+              </svg>
+            </div>
+            <div>
+              <div class="stats">
+                <span class="stat">Category: <b>-</b></span>
+                <span class="stat">Mistakes: <b>0 / 6</b></span>
+                <span class="stat">Round points: <b>0</b></span>
+                <span class="stat">Total: <b>0</b></span>
+              </div>
+              <div class="word">_ _ _ _ _</div>
+              <p class="sub" style="text-align:center">Hint appears here when requested.</p>
+            </div>
+          </div>
+
+          <div class="keyboard" aria-label="Letter buttons">
+            <button>A</button><button>B</button><button>C</button><button>D</button><button>E</button><button>F</button><button>G</button><button>H</button><button>I</button>
+            <button>J</button><button>K</button><button>L</button><button>M</button><button>N</button><button>O</button><button>P</button><button>Q</button><button>R</button>
+            <button>S</button><button>T</button><button>U</button><button>V</button><button>W</button><button>X</button><button>Y</button><button>Z</button>
+          </div>
+          <div class="actions">
+            <button class="secondary">Use hint (−1 point)</button>
+            <button class="secondary">End round</button>
+          </div>
+          <p class="caption">Status messages (correct guess, wrong guess, win, loss, or file-loading error) appear here.
+          </p>
+        </section>
+
+        <section class="card leaderboard">
+          <h2>Leaderboards · Top 3 players</h2>
+          <div class="boards">
+            <div>
+              <strong>Easy</strong>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Player</th>
+                    <th>Total points</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Player A</td>
+                    <td>18</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Player B</td>
+                    <td>14</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Player C</td>
+                    <td>11</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div>
+              <strong>Normal</strong>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Player</th>
+                    <th>Total points</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Player D</td>
+                    <td>16</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Player A</td>
+                    <td>12</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Player E</td>
+                    <td>9</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <p class="caption">Illustrative sample entries only; the finished game will calculate the leaderboards from
+            saved results.</p>
+        </section>
+      </main>
+    </div>
+    <p class="caption">Design sketch only. Controls are illustrative and do not save data or run the game.</p>
+  </div>
+</body>
+
+</html>

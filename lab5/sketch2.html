@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 5 Hangman - Initial Design Sketch</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: Arial, sans-serif;
+      color: #222;
+      background: #f3f4f6;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: auto;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      text-align: center;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #555;
+      margin: 0 0 22px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 270px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel {
+      background: white;
+      border: 2px solid #b8b8b8;
+      border-radius: 10px;
+      padding: 18px;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin: 0 0 14px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: bold;
+      margin: 10px 0 5px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+      background: white;
+    }
+
+    button {
+      border: 0;
+      border-radius: 5px;
+      background: #e8e8e8;
+      padding: 10px 13px;
+      font-weight: bold;
+      cursor: default;
+    }
+
+    .primary {
+      background: #222;
+      color: white;
+    }
+
+    .full {
+      width: 100%;
+      margin-top: 12px;
+    }
+
+    .small-note {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.45;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border: 2px dashed #999;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+      color: #666;
+    }
+
+    .profile-name {
+      font-weight: bold;
+    }
+
+    .toprow {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .theme {
+      font-size: 12px;
+      color: #555;
+    }
+
+    .levels {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .level {
+      flex: 1;
+      border: 2px solid #bbb;
+      border-radius: 7px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .level strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .gamearea {
+      border: 1px dashed #aaa;
+      border-radius: 8px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .gallows {
+      width: 150px;
+      height: 112px;
+      margin: 0 auto 10px;
+    }
+
+    .word {
+      font-size: 25px;
+      letter-spacing: 8px;
+      margin: 10px 0 14px;
+    }
+
+    .stats {
+      font-size: 13px;
+      margin: 10px 0;
+      color: #444;
+    }
+
+    .keyboard {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+      max-width: 420px;
+      margin: 12px auto;
+    }
+
+    .keyboard button {
+      padding: 8px 0;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .leaderboards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .leaderboard {
+      border: 1px solid #bbb;
+      border-radius: 6px;
+      padding: 10px;
+      font-size: 13px;
+    }
+
+    .leaderboard ol {
+      margin: 8px 0 0;
+      padding-left: 22px;
+    }
+
+    .callout {
+      font-size: 12px;
+      color: #555;
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    @media (max-width: 720px) {
+      body {
+        padding: 12px;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .keyboard {
+        grid-template-columns: repeat(7, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <h1>Hangman</h1>
+
+    <section class="panel">
+      <div class="toprow">
+        <div class="profile">
+          <div class="avatar">Photo</div>
+          <div>
+            <div class="profile-name">Player name</div>
+            <div class="small-note">Profile picture</div>
+          </div>
+        </div>
+        <button>Log out</button>
+      </div>
+      <div class="toprow">
+        <strong>Choose difficulty</strong>
+        <div class="theme">Theme: <strong>Light</strong> ▾</div>
+      </div>
+      <div class="levels">
+        <div class="level"><strong>Easy</strong></div>
+        <div class="level"><strong>Normal</strong></div>
+        <button class="primary">Start</button>
+      </div>
+      <div class="gamearea">
+        <svg class="gallows" viewBox="0 0 150 112" aria-label="Simple gallows illustration">
+          <g stroke="#222" stroke-width="5" fill="none" stroke-linecap="round">
+            <path d="M18 100 H130 M42 100 V10 H100 V25 M42 28 L60 10" />
+          </g>
+        </svg>
+        <div class="stats">Hint: A clue for the hidden word</div>
+        <div class="stats">Mistakes: 0 / 6 &nbsp; • &nbsp; Round points: 0</div>
+        <div class="word">_ _ _ _ _</div>
+        <div class="keyboard">
+          <button>A</button><button>B</button><button>C</button><button>D</button><button>E</button><button>F</button><button>G</button>
+          <button>H</button><button>I</button><button>J</button><button>K</button><button>L</button><button>M</button><button>N</button>
+          <button>O</button><button>P</button><button>Q</button><button>R</button><button>S</button><button>T</button><button>U</button>
+          <button>V</button><button>W</button><button>X</button><button>Y</button><button>Z</button>
+        </div>
+        <div class="actions"><button>Use hint (-1 point)</button><button>End round</button></div>
+      </div>
+      <div class="leaderboards">
+        <div class="leaderboard"><strong>Easy leaderboard - Top 3</strong>
+          <ol>
+            <li>Player - points</li>
+            <li>Player - points</li>
+            <li>Player - points</li>
+          </ol>
+        </div>
+        <div class="leaderboard"><strong>Normal leaderboard - Top 3</strong>
+          <ol>
+            <li>Player - points</li>
+            <li>Player - points</li>
+            <li>Player - points</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+    <p class="callout">The controls are placeholders for the design plan. Functionality will be added during
+      implementation.</p>
+  </div>
+</body>
+
+</html>
